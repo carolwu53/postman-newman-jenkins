@@ -1,0 +1,99 @@
+{
+	"info": {
+		"_postman_id": "a16387df-62e4-4373-aa5c-acdd29ae1e79",
+		"name": "newman_jenkins",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "https://jsonplaceholder.typicode.com/posts/1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3f1c817a-c154-4a7a-8d27-f4dd3c8553da",
+						"exec": [
+							"pm.test(\"Response time is less than 2000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below (2000);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/posts/1",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"posts",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://jsonplaceholder.typicode.com/comments?postId=1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b6cad1f5-6b7d-4019-aae0-6e497be32d96",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							" let jsonData = pm.response.json();",
+							"",
+							"pm.test(\"Your test name\", function () {",
+							"       pm.expect(jsonData[0].name).to.include(\"id labore ex et quam laborum\");",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://jsonplaceholder.typicode.com/comments?postId=1",
+					"protocol": "http",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"comments"
+					],
+					"query": [
+						{
+							"key": "postId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
